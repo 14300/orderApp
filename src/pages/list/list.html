@@ -3,21 +3,34 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
+  </ion-buttons>
     <ion-title>Order</ion-title>
   </ion-navbar>
 </ion-header>
-
+ 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+ 
+    <ion-list>
+ 
+        <ion-item-sliding *ngFor="let item of items">
+ 
+            <ion-item>
+                {{item.title}}
+            </ion-item>
+ 
+            <ion-item-options>
+                <button ion-button icon-only (click)="editItem(item)" light>
+                    <ion-icon name="paper"></ion-icon>
+                </button>
+                <button ion-button icon-only (click)="deleteItem(item)" danger>
+                    <ion-icon name="trash"></ion-icon>
+                </button>
+            </ion-item-options>
+ 
+        </ion-item-sliding>
+ 
+    </ion-list>
+ 
 </ion-content>

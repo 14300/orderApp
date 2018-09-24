@@ -1,67 +1,80 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
-})
+}) 
+
 export class ListPage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
-
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['restaurant'];
-
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
     this.items = [];
-    
-      this.items.push({
-        title:"Noodle Soup",
-        note:"$10.00",
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+  }
+
+  addItem(){
+
+      let prompt = this.alertCtrl.create({
+          title: 'Add Item',
+          inputs: [{
+              name: 'title'
+          }],
+          buttons: [
+              {
+                  text: 'Cancel'
+              },
+              {
+                  text: 'Add',
+                  handler: data => {
+                      this.items.push(data);
+                  }
+              }
+          ]
       });
 
-      this.items.push({
-        title:"Noodle Salad",
-        note:"$10.00",
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+      prompt.present();
+  }
+
+  editItem(item){
+
+      let prompt = this.alertCtrl.create({
+          title: 'Edit Item',
+          inputs: [{
+              name: 'title'
+          }],
+          buttons: [
+              {
+                  text: 'Cancel'
+              },
+              {
+                  text: 'Save',
+                  handler: data => {
+                      let index = this.items.indexOf(item);
+
+                      if(index > -1){
+                        this.items[index] = data;
+                      }
+                  }
+              }
+          ]
       });
 
-      this.items.push({
-        title: "Spring Rolls",
-        note: "$6.00",
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-      
-      this.items.push({
-        title:"Dumplings",
-        note:"$6.00",
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-
-      this.items.push({
-        title:"Wontons",
-        note:"$6.00",
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-
-      this.items.push({
-        title:"Salad Bowl",
-        note:"$6.00",
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
+      prompt.present();      
 
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
+  deleteNote(item){
+
+      let index = this.items.indexOf(item);
+
+      if(index > -1){
+          this.items.splice(index, 1);
+      }
   }
+
+
 }
  
