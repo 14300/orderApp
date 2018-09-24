@@ -19,8 +19,9 @@ export class ListPage {
 
       let prompt = this.alertCtrl.create({
           title: 'Add Item',
+          subTitle:'Enter Name and Price',
           inputs: [{
-              name: 'title'
+              name: 'title',
           }],
           buttons: [
               {
@@ -42,8 +43,9 @@ export class ListPage {
 
       let prompt = this.alertCtrl.create({
           title: 'Edit Item',
+          
           inputs: [{
-              name: 'title'
+              name: 'title',
           }],
           buttons: [
               {
@@ -66,7 +68,7 @@ export class ListPage {
 
   }
 
-  deleteNote(item){
+  deleteItem(item){
 
       let index = this.items.indexOf(item);
 
