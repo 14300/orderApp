@@ -7,18 +7,21 @@
       <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
   </ion-buttons>
     <ion-title>Order</ion-title>
+
   </ion-navbar>
 </ion-header>
  
 <ion-content>
-
+        
     <ion-list>
-
+           
         <ion-item-sliding *ngFor="let item of items">
 
                 <button ion-item (click)="itemTapped()">
+                        <ion-icon [name]="item.icon" item-start></ion-icon>
                         {{item.title}}
                         {{item.fee}}
+                   
 
                  </button>
 

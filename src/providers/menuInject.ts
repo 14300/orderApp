@@ -4,11 +4,11 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 @Injectable()
 export class MenuList {
 
-    list: Array<{ title: string, fee:string }>
+    list: Array<{ title: string, fee:string}>
 
     constructor(public alertCtrl: AlertController) {
         this.list = [ 
-            { title: "Chicken Noodle Soup", fee: "$10" },
+            { title: "Chicken Noodle Soup", fee: "$10"},
             { title: "Dumplings", fee: "$6"},
             { title: "Mixed Salad Noodles", fee: "$8"}
         ];
