@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { MenuList} from '../../providers/menuInject' ;
 
 @Component({
   selector: 'page-list',
@@ -7,76 +8,29 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 }) 
 
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+    selectedItem: any;
+    icons: string[];
+    //items: Array<{title: string, note: string, icon: string}>;
+    items: any;  
 
-  constructor(public navCtrl: NavController, public alertCtrl: AlertController) {
-    this.items = [];
-  }
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public menu: MenuList ) {
+        this.items = this.menu.list;
+    }
+  
+    addItem = function(){
+        this.menu.addItem();
+    }
 
-  addItem(){
+    editItem = function(item){
+        this.menu.editItem(item, item.tag, item.cost)
+    }
 
-      let prompt = this.alertCtrl.create({
-          title: 'Add Item',
-          subTitle:'Enter Name and Price',
-          inputs: [{
-              name: 'title',
-          }],
-          buttons: [
-              {
-                  text: 'Cancel'
-              },
-              {
-                  text: 'Add',
-                  handler: data => {
-                      this.items.push(data);
-                  }
-              }
-          ]
-      });
+    deleteItem = function(item){
+        this.menu.deleteItem(item)
+    }
 
-      prompt.present();
-  }
-
-  editItem(item){
-
-      let prompt = this.alertCtrl.create({
-          title: 'Edit Item',
-          
-          inputs: [{
-              name: 'title',
-          }],
-          buttons: [
-              {
-                  text: 'Cancel'
-              },
-              {
-                  text: 'Save',
-                  handler: data => {
-                      let index = this.items.indexOf(item);
-
-                      if(index > -1){
-                        this.items[index] = data;
-                      }
-                  }
-              }
-          ]
-      });
-
-      prompt.present();      
-
-  }
-
-  deleteItem(item){
-
-      let index = this.items.indexOf(item);
-
-      if(index > -1){
-          this.items.splice(index, 1);
-      }
-  }
-
-
+    itemTapped = function(){
+        this.menu.itemTapped()
+    }
 }
- 
+

@@ -11,15 +11,17 @@
 </ion-header>
  
 <ion-content>
- 
+
     <ion-list>
- 
+
         <ion-item-sliding *ngFor="let item of items">
- 
-            <ion-item>
-                {{item.title}}
-            </ion-item>
- 
+
+                <button ion-item (click)="itemTapped()">
+                        {{item.title}}
+                        {{item.fee}}
+
+                 </button>
+
             <ion-item-options>
                 <button ion-button icon-only (click)="editItem(item)" light>
                     <ion-icon name="paper"></ion-icon>
