@@ -48,7 +48,7 @@
         <!-- Orders -->
         <ion-title>Orders</ion-title>
         <p>Tap on the items to remove them from the order
-                <button ion-button color = "dark"icon-end (click)="confirmOrder(item)">
+                <button ion-button color = "dark"icon-end  *ngIf="this.orders.length>0" (click)="confirmOrder(item)">
                         Confirm  <ion-icon name="checkmark"></ion-icon>
                 </button>
         </p>

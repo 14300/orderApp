@@ -9,13 +9,13 @@ export class MenuList {
 
     constructor(public alertCtrl: AlertController) {
         this.list = [ 
-            { title: "Chicken Noodle Soup", fee: "$10"},
-            { title: "BBQ Pork Noodle", fee: "$10"},
-            { title: "Beef Noodle Stir Fry", fee: "$10"},
-            { title: "Mixed Salad Noodles", fee: "$8"},
-            { title: "Dumplings", fee: "$6"},
-            { title: "Fried Dim Sums", fee: "$6"},
-            { title: "Wontons", fee: "$6"}
+            { title: "Chicken Noodle Soup", fee: "$10.00"},
+            { title: "BBQ Pork Noodle", fee: "$10.00"},
+            { title: "Beef Noodle Stir Fry", fee: "$10.00"},
+            { title: "Mixed Salad Noodles", fee: "$8.00"},
+            { title: "Dumplings", fee: "$6.00"},
+            { title: "Fried Dim Sums", fee: "$6.00"},
+            { title: "Wontons", fee: "$6.00"}
         ];
         this.orders = [];
     

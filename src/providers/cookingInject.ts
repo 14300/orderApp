@@ -4,14 +4,24 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 @Injectable()
 export class ConfirmList {
 
-    list: Array<{ title: string, fee:string}>
+    cookingList: Array<Array<{ title: string, fee:string}>>
 
     constructor(public alertCtrl: AlertController) {
-        this.list = [];
+        this.cookingList = [];
     }
 
-    cooking(list){
+    addOrder(list){
+        this.cookingList.push(list);
+    }
 
+    removeOrder(list){
+        
+        let index = this.cookingList.indexOf(list);
+  
+        if(index > -1){
+            this.cookingList.splice(index, 1);
+    
+        }   
     }
 
 }

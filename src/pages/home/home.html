@@ -9,10 +9,17 @@
 
 <ion-content padding>
   <h3>Orders Being Made</h3>
-
-  <p>
-    Current orders that are being made
-  </p>
-
+  <p>Current orders that are being made</p>
+  
+  <ion-grid style = "height: 100%">
+    <button ion-list *ngFor = "let list of cooking" (click) ="orderTapped(list)" >
+      <ion-item *ngFor = "let item of list">
+        {{item.title}}
+        {{item.fee}}
+      </ion-item>
+    </button>
+ 
+  
+  </ion-grid>
   
 </ion-content>

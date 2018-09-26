@@ -13,6 +13,7 @@ export class ListPage {
     //items: Array<{title: string, note: string, icon: string}>;
     items: any;  
     orders: any;
+ 
 
     constructor(public navCtrl: NavController, public alertCtrl: AlertController, public menu: MenuList, public confirm: ConfirmList)  {
         this.items = this.menu.list;
@@ -39,9 +40,19 @@ export class ListPage {
         this.menu.removeItem(item)
     }
 
-    confrimOrder = function(item){
-        let list = this.orders;
-        this.confirm.cooking(list)
+    removeRemaining = function ():void{
+        this.menu.orders = [];
+    }
+
+    confirmOrder = function(item){
+        let list = [];
+        this.menu.orders.forEach(item => {list.push(item)});
+
+        this.removeRemaining();
+        this.orders = this.menu.orders
+
+        this.confirm.addOrder(list)
+        
     }
 }
 
