@@ -5,13 +5,20 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 export class MenuList {
 
     list: Array<{ title: string, fee:string}>
+    orders: Array<{title: string, fee:string}>
 
     constructor(public alertCtrl: AlertController) {
         this.list = [ 
             { title: "Chicken Noodle Soup", fee: "$10"},
+            { title: "BBQ Pork Noodle", fee: "$10"},
+            { title: "Beef Noodle Stir Fry", fee: "$10"},
+            { title: "Mixed Salad Noodles", fee: "$8"},
             { title: "Dumplings", fee: "$6"},
-            { title: "Mixed Salad Noodles", fee: "$8"}
+            { title: "Fried Dim Sums", fee: "$6"},
+            { title: "Wontons", fee: "$6"}
         ];
+        this.orders = [];
+    
     }
 
     addItem(){
@@ -79,8 +86,15 @@ export class MenuList {
         }
     }
 
-    itemTapped(event, item) {
-
+    itemTapped(title, fee) {  
+        this.orders.push({title, fee})
     }
 
+    removeItem(item){
+        let index = this.orders.indexOf(item);
+  
+        if(index > -1){
+            this.orders.splice(index, 1);
+        }
+    }
 }

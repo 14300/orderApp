@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { MenuList} from '../../providers/menuInject' ;
+import { ConfirmList} from '../../providers/cookingInject' ;
 
 @Component({
   selector: 'page-list',
@@ -9,12 +10,13 @@ import { MenuList} from '../../providers/menuInject' ;
 
 export class ListPage {
     selectedItem: any;
-    icons: string[];
     //items: Array<{title: string, note: string, icon: string}>;
     items: any;  
+    orders: any;
 
-    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public menu: MenuList ) {
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public menu: MenuList, public confirm: ConfirmList)  {
         this.items = this.menu.list;
+        this.orders = this.menu.orders
     }
   
     addItem = function(){
@@ -29,8 +31,17 @@ export class ListPage {
         this.menu.deleteItem(item)
     }
 
-    itemTapped = function(){
-        this.menu.itemTapped()
+    itemTapped = function(item){
+        this.menu.itemTapped(item.title,item.fee)
+    }
+
+    removeItem = function(item){
+        this.menu.removeItem(item)
+    }
+
+    confrimOrder = function(item){
+        let list = this.orders;
+        this.confirm.cooking(list)
     }
 }
 

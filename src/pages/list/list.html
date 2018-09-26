@@ -6,36 +6,65 @@
     <ion-buttons end>
       <button ion-button icon-only (click)="addItem()"><ion-icon name="add"></ion-icon></button>
   </ion-buttons>
-    <ion-title>Order</ion-title>
+    <ion-title>Ordering</ion-title>
 
   </ion-navbar>
 </ion-header>
- 
-<ion-content>
-        
-    <ion-list>
-           
-        <ion-item-sliding *ngFor="let item of items">
 
-                <button ion-item (click)="itemTapped()">
-                        <ion-icon [name]="item.icon" item-start></ion-icon>
+<ion-content padding-left>
+
+    <ion-grid style = "height: 100%">
+        <h2>Main food menu for adding items and orders</h2>
+
+    <ion-row style = "height: 100%"> 
+        <ion-col>
+        <!-- Menu Items -->
+        <ion-title>Food Items</ion-title>
+            <p>Tap the items to add them to the order</p>
+        <ion-list>
+           
+                <ion-item-sliding *ngFor="let item of items">
+
+                    <button ion-item (click)="itemTapped(item)">
                         {{item.title}}
                         {{item.fee}}
-                   
+                    </button>
 
-                 </button>
+                    <ion-item-options>
+                        <button ion-button icon-only (click)="editItem(item)" light>
+                            <ion-icon name="paper"></ion-icon>
+                        </button>
 
-            <ion-item-options>
-                <button ion-button icon-only (click)="editItem(item)" light>
-                    <ion-icon name="paper"></ion-icon>
+                        <button ion-button icon-only (click)="deleteItem(item)" danger>
+                            <ion-icon name="trash"></ion-icon>
+                        </button>
+
+                    </ion-item-options>
+ 
+                </ion-item-sliding>
+ 
+        </ion-list>
+            
+        <!-- Orders -->
+        <ion-title>Orders</ion-title>
+        <p>Tap on the items to remove them from the order
+                <button ion-button color = "dark"icon-end (click)="confirmOrder(item)">
+                        Confirm  <ion-icon name="checkmark"></ion-icon>
                 </button>
-                <button ion-button icon-only (click)="deleteItem(item)" danger>
-                    <ion-icon name="trash"></ion-icon>
-                </button>
-            </ion-item-options>
- 
-        </ion-item-sliding>
- 
-    </ion-list>
- 
+        </p>
+
+        <ion-list>
+           <button ion-item *ngFor="let item of orders"(click)="removeItem(item)">
+                {{item.title}}
+                {{item.fee}}
+            </button>
+        
+        </ion-list>
+
+        </ion-col>   
+
+    </ion-row>
+        
+    </ion-grid>
+
 </ion-content>
