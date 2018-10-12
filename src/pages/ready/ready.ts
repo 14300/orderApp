@@ -1,3 +1,4 @@
+//Requires and Imports
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -5,6 +6,7 @@ import { NavController } from 'ionic-angular';
   selector: 'page-ready',
   templateUrl: 'ready.html'
 })
+
 export class ReadyPage {
 
   constructor(public navCtrl: NavController) {

@@ -1,3 +1,4 @@
+//Requires and Imports
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
@@ -7,15 +8,20 @@ import { ConfirmList} from '../../providers/cookingInject' ;
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
+
 export class HomePage {
 
-cooking: Array<Array<{title: string, fee:string}>>
+  //defining cooking/orders 
+  cooking: Array<Array<{title: string, fee:string}>>
 
-  constructor(public navCtrl: NavController, public confirm: ConfirmList) {
-      this.cooking = this.confirm.cookingList
-  }
+    //defining libraries and injectables
+    constructor(public navCtrl: NavController, public confirm: ConfirmList) {
+      this.cooking = this.confirm.cookingList //make variable cooking into what is ordered 
+    }
 
-  orderTapped = function(list){
-    this.confirm.removeOrder(list)
-  }
+    //calls the remove order function when order is tapped
+    orderTapped = function(list){
+      this.confirm.removeOrder(list)
+    }
 }

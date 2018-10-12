@@ -1,20 +1,22 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="menu"></ion-icon> 
     </button>
-    <ion-title>Cooking</ion-title>
+    <ion-title>Cooking</ion-title>  <!-- Cooking navigation title -->
   </ion-navbar>
 </ion-header>
 
+
 <ion-content padding>
-  <h3>Orders Being Made</h3>
-  <p>Current orders that are being made</p>
+  <h3>Orders Being Made</h3>  <!-- page title -->
+  <p>Current orders that are being made</p> <!-- description -->
   
   <ion-grid style = "height: 100%">
-    <button ion-list *ngFor = "let list of cooking" (click) ="orderTapped(list)" >
+    <button ion-list *ngFor = "let list of cooking" (click) ="orderTapped(list)" >  <!-- calls orderTapped when clicked -->
       <ion-item *ngFor = "let item of list">
-        {{item.title}}
+        <!-- displays title and fee -->
+        {{item.title}} 
         {{item.fee}}
       </ion-item>
     </button>
